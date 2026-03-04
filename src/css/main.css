@@ -1,0 +1,107 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+    --font-sans: 'DM Sans', sans-serif;
+    --font-mono: 'DM Mono', monospace;
+}
+
+/* Base transitions for theme switching */
+*,
+*::before,
+*::after {
+    transition-property: background-color, border-color, color;
+    transition-duration: 300ms;
+    transition-timing-function: ease;
+}
+
+/* Disable transitions for elements that shouldn't animate */
+svg,
+svg *,
+img {
+    transition: none;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+    width: 6px;
+}
+
+::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #cbd5e1;
+    border-radius: 3px;
+}
+
+.dark ::-webkit-scrollbar-thumb {
+    background: #475569;
+}
+
+/* Code/mono highlight */
+.mono {
+    font-family: var(--font-mono);
+}
+
+/* Architecture diagram styles */
+.arch-box {
+    border: 1px solid;
+    border-radius: 6px;
+    padding: 8px 14px;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.arch-arrow {
+    display: flex;
+    align-items: center;
+    color: #94a3b8;
+    font-size: 1.25rem;
+    padding: 0 4px;
+}
+
+/* Timeline connector */
+.timeline-dot {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-top: 6px;
+}
+
+/* Section fade-in on scroll */
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(16px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-up {
+    animation: fadeUp 0.5s ease forwards;
+}
+
+/* Copy button success state */
+.copy-btn.copied {
+    color: #22c55e;
+}
